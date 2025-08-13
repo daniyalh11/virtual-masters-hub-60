@@ -1,0 +1,124 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* AI Virtual Masters - Advanced Dark Theme Design System */
+
+@layer base {
+  :root {
+    /* Deep space dark theme with AI aesthetics */
+    --background: 220 100% 2%;
+    --foreground: 210 40% 98%;
+
+    --card: 220 100% 3%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 220 100% 3%;
+    --popover-foreground: 210 40% 98%;
+
+    /* AI-inspired color palette - Cyan & Electric Blue */
+    --primary: 195 100% 60%;
+    --primary-foreground: 220 100% 2%;
+    --primary-glow: 195 100% 75%;
+    --primary-dark: 195 100% 40%;
+
+    --secondary: 280 100% 70%;
+    --secondary-foreground: 210 40% 98%;
+    --secondary-glow: 280 100% 80%;
+
+    --accent: 350 100% 60%;
+    --accent-foreground: 210 40% 98%;
+    --accent-glow: 350 100% 75%;
+
+    --muted: 220 100% 5%;
+    --muted-foreground: 215 20% 65%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 220 100% 8%;
+    --input: 220 100% 4%;
+    --ring: 195 100% 60%;
+
+    /* AI-themed gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(195 100% 60%), hsl(280 100% 70%));
+    --gradient-hero: linear-gradient(135deg, hsl(220 100% 2%) 0%, hsl(220 100% 3%) 30%, hsl(220 100% 4%) 70%, hsl(220 100% 5%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 100% 3%), hsl(220 100% 5%));
+    --gradient-ai: linear-gradient(90deg, hsl(195 100% 60%), hsl(280 100% 70%), hsl(350 100% 60%));
+    --gradient-neural: radial-gradient(circle at 50% 50%, hsl(195 100% 60% / 0.1), transparent 70%);
+    
+    /* Enhanced shadows and effects */
+    --shadow-glow: 0 0 50px hsl(195 100% 60% / 0.3);
+    --shadow-card: 0 8px 32px hsl(220 100% 1% / 0.8);
+    --shadow-button: 0 4px 20px hsl(195 100% 60% / 0.4);
+    --shadow-neural: 0 0 100px hsl(195 100% 60% / 0.1);
+    --shadow-ai-glow: 0 0 80px hsl(280 100% 70% / 0.2);
+    --shadow-elegant: 0 10px 30px -10px hsl(var(--primary) / 0.3);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 210 40% 98%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
