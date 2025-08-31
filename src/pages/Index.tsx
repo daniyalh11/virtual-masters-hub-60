@@ -15,6 +15,7 @@ import { AIChatbot } from "@/components/chatbot/AIChatbot";
 const Index = () => {
   const [talentFormOpen, setTalentFormOpen] = useState(false);
   const [serviceFormOpen, setServiceFormOpen] = useState(false);
+  
   const features = [
     {
       icon: "⚡",
@@ -121,16 +122,26 @@ const Index = () => {
               Whether you're a startup, coach, agency, or entrepreneur — we offer scalable human + AI support tailored to your needs.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Button 
+              {/* <Button 
                 onClick={() => setServiceFormOpen(true)}
                 variant="hero" 
                 size="lg" 
                 className="w-full sm:w-auto animate-pulse-glow font-grotesk"
               >
                 Get Started Today
-              </Button>
-              <Button 
-                onClick={() => setTalentFormOpen(true)}
+              </Button> */}
+               
+              <Button
+  onClick={() => window.location.href = "https://40d3j9.share-na2.hsforms.com/27ybo7WyGTLyZgIp0_lizhw"}
+  variant="hero"
+  size="lg"
+  className="w-full sm:w-auto animate-pulse-glow font-grotesk"
+>
+  Get Started Today
+</Button>
+
+<Button
+  onClick={() => window.location.href = "https://share-na2.hsforms.com/1GiaMAGutTdSesl4oXuAfqg40d3j9"}
                 variant="outline" 
                 size="lg" 
                 className="w-full sm:w-auto border-primary text-primary hover:bg-primary hover:text-primary-foreground font-grotesk"
@@ -307,26 +318,34 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Join as Talent CTA */}
-      <section className="py-20 bg-gradient-primary relative">
-        <div className="absolute inset-0 opacity-20">
-          <img src={aiHumanCollaboration} alt="AI Human Collaboration" className="w-full h-full object-cover" />
-        </div>
-        <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl font-bold text-white mb-6">Join as Talent</h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
-            Explore remote career opportunities and join our mission to build India's next wave of talent.
-          </p>
-          <Button 
-            onClick={() => setTalentFormOpen(true)}
-            variant="secondary" 
-            size="lg"
-            className="bg-white text-primary hover:bg-white/90"
-          >
-            Apply as Talent
-          </Button>
-        </div>
-      </section>
+       <section className="py-20 bg-gradient-primary relative">
+  {/* Background image with no click blocking */}
+  <div className="absolute inset-0 opacity-20 pointer-events-none z-0">
+    <img
+      src={aiHumanCollaboration}
+      alt="AI Human Collaboration"
+      className="w-full h-full object-cover"
+    />
+  </div>
+
+  {/* Content */}
+  <div className="container mx-auto px-4 text-center relative z-10">
+    <h2 className="text-4xl font-bold text-white mb-6">Join as Talent</h2>
+    <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+      Explore remote career opportunities and join our mission to build India's
+      next wave of talent.
+    </p>
+    <Button
+  onClick={() => window.location.href = "https://share-na2.hsforms.com/1GiaMAGutTdSesl4oXuAfqg40d3j9"}
+      variant="secondary"
+      size="lg"
+      className="bg-white text-primary hover:bg-white/90"
+    >
+      Apply as Talent
+    </Button>
+  </div>
+</section>
+
 
       {/* Forms */}
       <TalentApplicationForm 

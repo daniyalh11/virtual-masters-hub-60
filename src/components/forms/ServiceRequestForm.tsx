@@ -1,4 +1,4 @@
-import React from "react";
+ import React from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -28,32 +28,24 @@ import {
 } from "@/components/ui/select";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
+import axios from "axios"; // Add axios for API calls
 
 const serviceSchema = z.object({
-  // Contact Information
   fullName: z.string().min(2, "Full name is required"),
   email: z.string().email("Valid email is required"),
   phone: z.string().min(10, "Valid phone number is required"),
   company: z.string().min(2, "Company name is required"),
   website: z.string().optional(),
-  
-  // Business Information
   businessType: z.string().min(1, "Business type is required"),
   companySize: z.string().min(1, "Company size is required"),
   industry: z.string().min(1, "Industry is required"),
-  
-  // Service Requirements
   services: z.array(z.string()).min(1, "Select at least one service"),
   projectType: z.string().min(1, "Project type is required"),
   urgency: z.string().min(1, "Timeline is required"),
   budget: z.string().min(1, "Budget range is required"),
-  
-  // Project Details
   projectDescription: z.string().min(20, "Please provide detailed project description"),
   goals: z.string().min(10, "Please describe your goals"),
   challenges: z.string().optional(),
-  
-  // Additional Requirements
   preferredCommunication: z.string().min(1, "Communication preference is required"),
   timezone: z.string().min(1, "Timezone is required"),
   additionalNotes: z.string().optional(),
@@ -72,12 +64,41 @@ export function ServiceRequestForm({ open, onOpenChange }: ServiceRequestFormPro
     },
   });
 
-  const onSubmit = (values: z.infer<typeof serviceSchema>) => {
-    console.log("Service Request:", values);
-    toast.success("Service request submitted! We'll contact you within 24 hours.");
-    onOpenChange(false);
-    form.reset();
+  const onSubmit = async (values: z.infer<typeof serviceSchema>) => {
+    try {
+      const hubspotEndpoint = `https://api.hsforms.com/submissions/v3/integration/submit/242475813/a606e99d-2836-488c-8783-dddeec5949dd`;
+  
+      const payload = {
+        fields: [
+          { name: "email", value: values.email },
+          { name: "firstname", value: values.fullName },
+          { name: "phone", value: values.phone },
+          { name: "company", value: values.company },
+          { name: "website", value: values.website },
+          { name: "project_description", value: values.projectDescription },
+          { name: "goals", value: values.goals },
+          // 🔹 You need to match the `name` fields with HubSpot form fields
+          // If you created custom fields in HubSpot, use their internal names here
+        ],
+        context: {
+          pageUri: window.location.href,
+          pageName: document.title,
+        },
+      };
+  
+      await axios.post(hubspotEndpoint, payload, {
+        headers: { "Content-Type": "application/json" },
+      });
+  
+      toast.success("Service request submitted to CRM!");
+      onOpenChange(false);
+      form.reset();
+    } catch (error) {
+      console.error("HubSpot submission error:", error);
+      toast.error("Failed to send data to HubSpot.");
+    }
   };
+  
 
   const serviceOptions = [
     "Virtual Assistant Services",

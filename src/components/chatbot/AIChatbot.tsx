@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { MessageCircle, X, Send, Bot, User } from "lucide-react";
 import { cn } from "@/lib/utils";
+import axios from "axios"; // ✅ Add axios for API calls
 
 interface Message {
   id: number;
@@ -27,6 +28,29 @@ export function AIChatbot() {
   const [currentStep, setCurrentStep] = useState(0);
   const [userResponses, setUserResponses] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+
+  // ✅ HubSpot Form Submission Function
+  async function sendToHubSpot(name: string, phone: string, responses: string[]) {
+    try {
+      await axios.post(
+        "https://api-na2.hsforms.com/submissions/v3/integration/submit/242475813/8f7b9f7e-2c73-44d2-a921-4815ce91776b",
+        {
+          fields: [
+            { name: "firstname", value: name || "Visitor" },
+            { name: "phone", value: phone },
+            { name: "chatbot_response", value: responses.join(" | ") }
+          ],
+          context: {
+            pageUri: window.location.href,
+            pageName: document.title,
+          },
+        }
+      );
+      console.log("✅ Data sent to HubSpot successfully!");
+    } catch (error: any) {
+      console.error("❌ HubSpot submission error:", error.response?.data || error);
+    }
+  }
 
   const chatFlow: ChatStep[] = [
     {
@@ -146,9 +170,11 @@ export function AIChatbot() {
         setCurrentStep(nextStepId);
         addBotMessage(nextStep.botMessage);
 
-        // Handle special actions
+        // ✅ Handle special actions (send data to HubSpot)
         if (nextStep.action === "contact") {
-          // This is where we'd collect contact info
+          const phone = response; // last input is phone number
+          const name = userResponses[0] || "Visitor"; // first answer could be name if you add that step
+          sendToHubSpot(name, phone, [...userResponses, response]);
         }
       } else {
         // End of conversation

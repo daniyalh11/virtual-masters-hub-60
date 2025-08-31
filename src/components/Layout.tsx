@@ -43,7 +43,9 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
                   {item.name}
                 </Link>
               ))}
-              <Button variant="hero" size="sm">
+              <Button
+               onClick={() => window.location.href = "https://40d3j9.share-na2.hsforms.com/27ybo7WyGTLyZgIp0_lizhw"}
+              variant="hero" size="sm">
                 Get Started
               </Button>
             </div>
